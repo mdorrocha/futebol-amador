@@ -6,3 +6,15 @@ confirmar presença para os jogos. Além disso, é possível escalar as duas equ
 Esta pontuação é gerada conforme o resultado da partida. Três pontos para cada atleta da equipe vencedora e em caso de empate, 1 ponto para todos.
 
 Acesse o link <a href="https://futebolamador.herokuapp.com/">https://futebolamador.herokuapp.com/</a>
+
+<p>Barra de navegação:</p>
+
+<img src="./static/img/telas/barra_navegacao.png" height="400">
+
+<p>Lista de confirmados:</p>
+
+<img src="./static/img/telas/lista_confirmados.png" width=50%>
+
+<p>Escalação das equipes:</p>
+
+<img src="./static/img/telas/tela_escalação.PNG">
