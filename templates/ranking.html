@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    {% if lista_atletas %}
+        <h1 class="text-info fonte-titulo">Ranking dos atletas</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Posição</th>
+                    <th scope="col">Pontuação</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for jogador in lista_atletas %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{jogador.nome}}</td>
+                    <td>{{jogador.posicao}}</td>  
+                    <td>{{jogador.pontuacao}}</td>                  
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</main>
+{% endblock %}

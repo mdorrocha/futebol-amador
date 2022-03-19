@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}}" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+    {% endif %}
+    {% if jogo %}
+        <div class="alert alert-info" role="alert">
+            <p>{{jogo.modalidade_futebol.nome}} em {{jogo.data_hora_jogo}}</p>
+            <hr>
+            <p class="mb-0">Local: {{jogo.local.nome}}</p>
+        </div>
+        <h1 class="text-info fonte-titulo">Lista de confirmados</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Posição</th>
+                    {% if not jogo.escalacao.all and not confirmar_presenca %}
+                        <th scope="col">#</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for jogador in confirmados %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{jogador.nome}}</td>
+                    <td>{{jogador.posicao}}</td>                    
+                    {% if not jogo.escalacao.all and not confirmar_presenca %}
+                        {% if request.user == jogador.user %}
+                            <td><a class="btn-link" href="{% url 'remover-presenca' jogador.id %}" role="button">Excluir</a></td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+            
+        {% if confirmar_presenca %}
+            <form action="{% url 'lista-confirmados' %}" method='POST' enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                <div class="form-group form-check">
+                    <input class="form-check-input" type="checkbox" id="confirmaPresenca" name="confirmaPresenca">
+                    <label class="form-check-label" for="confirmaPresenca">
+                    Confirma presença?
+                    </label>
+                </div>
+                <button type="submit" class="btn botao-cor-especial mb-3">Enviar</button>
+            </form>
+        {% endif %}
+    {% endif %}
+</main>
+{% endblock %}

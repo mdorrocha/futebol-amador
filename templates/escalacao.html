@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main>
+    {% if tem_escalacao %}
+        <div class="alert alert-info" role="alert">
+            <p>Escalação do {{jogo}} em {{jogo.data_hora_jogo}}</p>
+            <hr>
+            <p class="mb-0">Local: {{jogo.local.nome}}</p>
+        </div>
+        <h1 class="text-info fonte-titulo">Escalação</h1>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col" colspan="3">Equipe 1</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Posição</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for escalacao in equipe_um %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{escalacao.jogador.nome}}</td>
+                        <td>{{escalacao.jogador.posicao}}</td>                    
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+              <div class="col-sm-6">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col" colspan="3">Equipe 2</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Posição</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for escalacao in equipe_dois %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{escalacao.jogador.nome}}</td>
+                        <td>{{escalacao.jogador.posicao}}</td>                    
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+            {% if request.user.is_superuser %}
+                <form action="{% url 'escalacao' %}" method='POST' enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    <button type="submit" class="btn botao-cor-especial">Gerar nova escalação</button>
+                </form>
+            {% endif %}  
+    {% else %}
+        {% if tem_equipe_atletas %}
+            <div class="alert alert-info" role="alert">
+                <p>Escalação não foi realizada!</p>
+            </div>
+            {% if request.user.is_superuser %}
+                <p>Clique no botão para gerar a escalação</p>
+                <form action="{% url 'escalacao' %}" method='POST' enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    <button type="submit" class="btn botao-cor-especial">Gerar escalação</button>
+                </form>
+            {% endif %}
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                <p>As equipes não foram cadastradas ou número de atletas é insuficiente</p>
+            </div>
+        {% endif %}
+    {% endif %}
+</main>
+{% endblock %}
