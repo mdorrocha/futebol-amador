@@ -1,20 +1,19 @@
-#Sistema para controlar partidas do futebol de um grupo de amigos.
+# Sistema para controlar partidas do futebol de um grupo de amigos.
 
 Projeto de um sistema que criei para compartilhar com a turma de amigos que gostam de um futebol, churrasco e cerveja.
 A aplicação tem uma interface de administração onde é possível cadastrar os atletas, suas posições em campo, a data e local do jogo. Os atletas podem acessar o sistema e 
 confirmar presença para os jogos. Além disso, é possível escalar as duas equipes conforme a posição de cada atleta. O sistema ainda mantem uma pontuação para cada atleta.
 Esta pontuação é gerada conforme o resultado da partida. Três pontos para cada atleta da equipe vencedora e em caso de empate, 1 ponto para todos.
 
-Acesse o link <a href="https://futebolamador.herokuapp.com/">https://futebolamador.herokuapp.com/</a>
+Acesse o link: [https://futebolamador.herokuapp.com](https://futebolamador.herokuapp.com)
+### Barra de navegação
 
-<p>Barra de navegação:</p>
+![Tela de menu](./static/img/telas/barra_navegacao.png)
 
-<img src="./static/img/telas/barra_navegacao.png" height="400">
+### Lista de confirmados
 
-<p>Lista de confirmados:</p>
+![Lista de confirmados](./static/img/telas/lista_confirmados.png)
 
-<img src="./static/img/telas/lista_confirmados.png" width=50%>
+### Escalação das equipes
 
-<p>Escalação das equipes:</p>
-
-<img src="./static/img/telas/tela_escalação.PNG">
+![Escalação](./static/img/telas/tela_escalação.PNG)
